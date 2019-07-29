@@ -1,0 +1,16 @@
+.searchInput{
+    background-color: var(--themeColor);
+    padding: 15rpx 10rpx;
+    height: 90rpx;
+}
+.searchInput navigator{
+    width: 100%;
+    height: 100%;
+    background-color: #fff;
+    color: #666;
+    /* 伸縮盒子 水平 垂直 都居中 */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 8rpx;
+}

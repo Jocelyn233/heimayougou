@@ -1,0 +1,4 @@
+<view class="searchInput">
+    <!-- 是一个navigator 导航组件 -->
+    <navigator url="../../pages/search/index">搜索</navigator>
+</view>

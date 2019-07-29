@@ -1,0 +1,26 @@
+.index_swiper {
+  height: 340rpx;
+}
+.index_cate {
+  display: flex;
+}
+.index_cate navigator {
+  flex: 1;
+  padding: 30rpx;
+}
+.index_floor .content {
+  /* 清除浮动  */
+  overflow: hidden;
+  padding: 0 10rpx 0 6rpx;
+}
+.index_floor .content .content_item {
+  width: 33.33%;
+  float: left;
+}
+.index_floor .content .content_item image:nth-last-child(-n + 4) {
+  height: calc(750rpx / 3 * 386 / 232 / 2);
+  border-left: 10rpx solid #fff;
+}
+.index_floor .content .content_item image:nth-last-child(-n + 2) {
+  border-top: 10rpx solid #fff;
+}
