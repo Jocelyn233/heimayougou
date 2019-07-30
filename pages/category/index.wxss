@@ -35,14 +35,15 @@
 }
 .rightContent view.rightContent_item view.rightContent_item_content {
   display: flex;
-  justify-content: center;
-  padding-left: 40rpx;
   flex-wrap: wrap;
 }
 .rightContent view.rightContent_item view.rightContent_item_content navigator {
   width: 33.33%;
-  align-content: center;
+  margin-top: 16rpx;
 }
-.rightContent view.rightContent_item view.rightContent_item_content navigator image {
-  width: 60%;
+.rightContent view.rightContent_item view.rightContent_item_content navigator view.index3_itenm {
+  text-align: center;
+}
+.rightContent view.rightContent_item view.rightContent_item_content navigator view.index3_itenm image {
+  width: 50%;
 }

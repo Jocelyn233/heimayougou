@@ -17,8 +17,10 @@
             </view>
             <view class="rightContent_item_content">
                 <navigator wx:for="{{item2.children}}" wx:for-index="index3" wx:for-item="item3" wx:key="cat_name">
-                    <image mode="widthFix" src="{{item3.cat_icon}}" />
-                    <view class="goods_name">{{item3.cat_name}}</view>
+                    <view class="index3_itenm">
+                        <image mode="widthFix" src="{{item3.cat_icon}}" />
+                        <view class="goods_name">{{item3.cat_name}}</view>
+                    </view>
                 </navigator>
             </view>
         </view>
