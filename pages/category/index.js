@@ -1,66 +1,59 @@
-// pages/category/index.js
+// 引入request方法
+import { request } from "../../request/index"
+
 Page({
-
   /**
-   * 页面的初始数据
-   */
+     * 页面的初始数据
+     */
   data: {
-
+    // 左边菜单栏数据
+    leftMenuList: [],
+    // 右侧商品内容数据
+    rightGoodsList: [],
+    // 当前的索引 默认为0
+    currentIndex: 0
   },
-
-  /**
-   * 生命周期函数--监听页面加载
-   */
-  onLoad: function (options) {
-
+  onLoad() {
+    this.getCateInfo()
   },
-
-  /**
-   * 生命周期函数--监听页面初次渲染完成
-   */
-  onReady: function () {
-
+  getCateInfo() {
+    request({
+      url: "/categories"
+    })
+      .then(res => {
+        // leftMenuList 等于总的数组中循环出cat_name和cat_id
+        let leftMenuList = res.map(v => {
+          return { cat_name: v.cat_name, cat_id: v.cat_id }
+        })
+        let rightGoodsList = res[0].children
+        this.setData({
+          leftMenuList,
+          rightGoodsList
+        })
+      })
+      .catch(err => {
+        console.log(err);
+      })
   },
-
-  /**
-   * 生命周期函数--监听页面显示
-   */
-  onShow: function () {
-
-  },
-
-  /**
-   * 生命周期函数--监听页面隐藏
-   */
-  onHide: function () {
-
-  },
-
-  /**
-   * 生命周期函数--监听页面卸载
-   */
-  onUnload: function () {
-
-  },
-
-  /**
-   * 页面相关事件处理函数--监听用户下拉动作
-   */
-  onPullDownRefresh: function () {
-
-  },
-
-  /**
-   * 页面上拉触底事件的处理函数
-   */
-  onReachBottom: function () {
-
-  },
-
-  /**
-   * 用户点击右上角分享
-   */
-  onShareAppMessage: function () {
-
+  // 点击左侧选项时
+  handleLeftItem(e) {
+    // 取到传过来的index值
+    const { index } = e.currentTarget.dataset
+    this.setData({
+      currentIndex: index
+    })
+    // 改变渲染的数据
+    request({
+      url: "/categories"
+    })
+      .then(res => {
+        let rightGoodsList = res[index].children
+        this.setData({
+          rightGoodsList
+        })
+      })
+      .catch(err => {
+        console.log(err);
+      })
   }
 })
