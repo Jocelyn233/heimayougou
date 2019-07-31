@@ -21,23 +21,47 @@ Page({
     // 每页显示的条数
     pagesize: 10
   },
-  total: 1,
+  // 总页数
+  TotalPages: 1,
   onLoad(params) {
     // console.log(params);  // {cid: "6"} 路由参数
     this.goodsListInfo.cid = params.cid
+    // console.log(this.goodsListInfo.cid);
+    this.getGoodsList()
+  },
+  getGoodsList() {
     request({
       url: '/goods/search',
       data: this.goodsListInfo
     })
       .then(res => {
+        // console.log(res);
         this.setData({
-          goodsList: res.goods
+          // 为了做加载下一页 改成拼接
+          goodsList: [...this.data.goodsList, ...res.goods]
         })
-        this.total = res.total
+        // 计算总页数 用总的数量/每页的容量 向上取整
+        this.TotalPages = Math.ceil(res.total / this.goodsListInfo.pagesize);
       })
       .catch(err => {
         console.log(err);
       })
+  },
+  // 触底时触发 小程序的生命周期函数
+  onReachBottom() {
+    // console.log('触底了');
+    // 先判断一下还是否有下一页数据 如果没有 就提示无更多数据 有再发送请求加载
+    if (this.goodsListInfo.pagenum >= this.TotalPages) {
+      // 如果当前的页码大于等于总的页码数 说明已经没有更多数据了 给提示
+      wx.showToast({
+        title: '已无更多数据',
+        icon: 'none'
+      })
+    } else {
+      // 还有下页数据
+      this.goodsListInfo.pagenum++;
+      this.getGoodsList();
+    }
   },
   // 子组件触发的自定义事件
   handleIndexChange(e) {
@@ -45,12 +69,12 @@ Page({
     // 遍历数组 当index等于传过来的index值得 isActive为true 否则为false
     // 取到数组
     const { tabsList } = this.data
-    tabsList.forEach((v,i)=> {
-        if(i===index){
-          v.isActive=true
-        }else{
-          v.isActive=false
-        }
+    tabsList.forEach((v, i) => {
+      if (i === index) {
+        v.isActive = true
+      } else {
+        v.isActive = false
+      }
     })
     // 改变data中的数据
     this.setData({

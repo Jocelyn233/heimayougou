@@ -40,7 +40,7 @@
 			"current": 0,
 			"list": [
 				{
-					"id": -1,
+					"id": 0,
 					"name": "goods_list",
 					"pathName": "pages/goods_list/index",
 					"query": "cid=6",
