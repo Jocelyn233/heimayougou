@@ -39,7 +39,7 @@
 }
 .rightContent view.rightContent_item view.rightContent_item_content navigator {
   width: 33.33%;
-  margin-top: 16rpx;
+  margin: 12rpx 0;
 }
 .rightContent view.rightContent_item view.rightContent_item_content navigator view.index3_itenm {
   text-align: center;

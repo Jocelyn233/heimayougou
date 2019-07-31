@@ -13,6 +13,8 @@ Page({
     // 当前的索引 默认为0
     currentIndex: 0
   },
+  // 用于存放返回的结果
+  Cates: [],
   onLoad() {
     this.getCateInfo()
   },
@@ -21,6 +23,7 @@ Page({
       url: "/categories"
     })
       .then(res => {
+        this.Cates = res;
         // leftMenuList 等于总的数组中循环出cat_name和cat_id
         let leftMenuList = res.map(v => {
           return { cat_name: v.cat_name, cat_id: v.cat_id }
@@ -42,18 +45,8 @@ Page({
     this.setData({
       currentIndex: index
     })
-    // 改变渲染的数据
-    request({
-      url: "/categories"
+    this.setData({
+      rightGoodsList: this.Cates[index].children
     })
-      .then(res => {
-        let rightGoodsList = res[index].children
-        this.setData({
-          rightGoodsList
-        })
-      })
-      .catch(err => {
-        console.log(err);
-      })
   }
 })
