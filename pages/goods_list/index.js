@@ -1,66 +1,36 @@
-// pages/goods_list/index.js
+// 引入发请求的方法
+import {request} from '../../request/index'
+
 Page({
-
-  /**
-   * 页面的初始数据
-   */
-  data: {
-
+  data: { // 放页面中需要用到的数据
+    // 渲染到页面的数组
+    goodsList: []
   },
-
-  /**
-   * 生命周期函数--监听页面加载
-   */
-  onLoad: function (options) {
-
+  // 发请求需要的参数
+  goodsListInfo: {
+    query: '',
+    cid: '',
+    // 第几页
+    pagenum: 1,
+    // 每页显示的条数
+    pagesize: 10
   },
-
-  /**
-   * 生命周期函数--监听页面初次渲染完成
-   */
-  onReady: function () {
-
-  },
-
-  /**
-   * 生命周期函数--监听页面显示
-   */
-  onShow: function () {
-
-  },
-
-  /**
-   * 生命周期函数--监听页面隐藏
-   */
-  onHide: function () {
-
-  },
-
-  /**
-   * 生命周期函数--监听页面卸载
-   */
-  onUnload: function () {
-
-  },
-
-  /**
-   * 页面相关事件处理函数--监听用户下拉动作
-   */
-  onPullDownRefresh: function () {
-
-  },
-
-  /**
-   * 页面上拉触底事件的处理函数
-   */
-  onReachBottom: function () {
-
-  },
-
-  /**
-   * 用户点击右上角分享
-   */
-  onShareAppMessage: function () {
-
+  total:1,
+  onLoad(params) {
+    // console.log(params);  // {cid: "6"} 路由参数
+    this.goodsListInfo.cid = params.cid
+    request({
+      url:'/goods/search',
+      data:this.goodsListInfo
+    })
+    .then(res=>{
+      this.setData({
+        goodsList:res.goods
+      })
+      this.total=res.total
+    })
+    .catch(err=>{
+      console.log(err);
+    })
   }
 })
