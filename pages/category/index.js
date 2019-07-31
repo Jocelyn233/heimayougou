@@ -11,7 +11,9 @@ Page({
     // 右侧商品内容数据
     rightGoodsList: [],
     // 当前的索引 默认为0
-    currentIndex: 0
+    currentIndex: 0,
+    // 滚动条距离顶部的高度
+    scrollTop:0
   },
   // 用于存放返回的结果
   Cates: [],
@@ -47,6 +49,10 @@ Page({
     })
     this.setData({
       rightGoodsList: this.Cates[index].children
+    })
+    // 修改数据要用this.setData
+    this.setData({
+      scrollTop:0
     })
   }
 })
