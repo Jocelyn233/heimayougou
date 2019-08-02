@@ -1,2 +1,47 @@
-<!--pages/goods_detail/index.wxml-->
-<text>pages/goods_detail/index.wxml</text>
+<!-- 详情页面 -->
+<!-- 轮播图部分 开始 -->
+<swiper class="detail_swiper" indicator-dots circular autoplay>
+    <swiper-item wx:for="{{goodsInfo.pics}}" wx:key="pics_id" bindtap="handleImage" data-index="{{index}}">
+        <!-- 点击进行图片的预览 小程序中的方法 wx.previewImage() -->
+            <image mode="widthFix" src="{{item.pics_mid}}" />
+    </swiper-item>
+</swiper>
+<!-- 轮播图部分 结束 -->
+<!-- 商品结束部分 开始 -->
+<view class="detail_price">¥ {{goodsInfo.goods_price}}</view>
+<view class="detail_info">
+    <view class="detail_goods_title">{{goodsInfo.goods_name}}</view>
+    <view class="detail_goods_collect">
+        <view class="iconfont icon-shoucang"></view>
+        <view class="goods_collect">收藏</view>
+    </view>
+</view>
+<!-- 商品结束部分 结束 -->
+<!-- 图文详情 开始 -->
+<view class="detail_bottom">
+    <view class="detail_bottom_title">图文详情</view>
+    <rich-text nodes="{{goodsInfo.goods_introduce}}"></rich-text>
+</view>
+<!-- 图文详情 结束 -->
+<!-- 底部功能栏 开始 -->
+<view class="effect">
+    <view class="contact">
+        <view class="iconfont icon-kefu"></view>
+        <view >客服</view>
+        <!-- 加一个按钮 让宽高 占满整个父元素 颜色为透明 -->
+        <button open-type="contact" ></button>
+    </view>
+    <view class="contact">
+        <view class="iconfont icon-yixianshi-"></view>
+        <view >分享</view>
+        <button open-type="share"></button>
+    </view>
+    <!-- 点击跳转到购物车页面 open-type="switchTab" 可以调到tabBar页面 并关闭其他页面 -->
+    <navigator class="contact" url="/pages/cart/index" open-type="switchTab">
+        <view class="iconfont icon-gouwuche"></view>
+        <view >购物车</view>
+    </navigator> 
+    <view class="addCart">加入购物车</view>
+    <view class="buy">立即购买</view>
+</view>
+<!-- 底部功能栏 结束 -->

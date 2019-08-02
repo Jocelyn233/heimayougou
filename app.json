@@ -1,7 +1,7 @@
 {
   "pages":[
+   "pages/index/index",
     "pages/category/index",
-    "pages/index/index",
     "pages/goods_list/index",
     "pages/goods_detail/index",
     "pages/cart/index",
@@ -15,7 +15,7 @@
     "pages/pay/index"
   ],
   "window":{
-    "backgroundTextStyle":"light",
+    "backgroundTextStyle":"dark",
     "navigationBarBackgroundColor": "#eb4450",
     "navigationBarTitleText": "黑马优购",
     "navigationBarTextStyle":"white"

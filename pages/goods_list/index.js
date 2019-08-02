@@ -30,6 +30,7 @@ Page({
     this.getGoodsList()
   },
   getGoodsList() {
+    // console.log(this.goodsListInfo);
     request({
       url: '/goods/search',
       data: this.goodsListInfo
@@ -80,5 +81,10 @@ Page({
     this.setData({
       tabsList
     })
-  }
+  },
+  // 下拉刷新时触发的函数
+  // onPullDownRefresh(){
+  //   console.log('下拉刷新');
+  // }
+
 })

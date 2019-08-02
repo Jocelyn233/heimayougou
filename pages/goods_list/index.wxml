@@ -6,10 +6,10 @@
     <block wx:if="{{tabsList[0].isActive}}">
         <view class="container">
             <view class="goodsList" wx:for="{{goodsList}}" wx:key="goods_id">
-                <navigator class="imageShow">
+                <navigator class="imageShow" url="/pages/goods_detail/index?goods_id={{item.goods_id}}">
                     <image src="{{item.goods_small_logo||'https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1565147328&di=3438dbd9e03b9c4abfbd3113abfbc445&imgtype=jpg&er=1&src=http%3A%2F%2Fwww.tucaod.com%2Fwp-content%2Fuploads%2F2017%2F12%2F404huyazhibo.jpg'}}" mode="widthFix"></image>
               </navigator> 
-                <navigator class="content">
+                <navigator class="content" url="/pages/goods_detail/index?goods_id={{item.goods_id}}">
                     <view class="content_title">{{item.goods_name}}</view>
                     <view class="content_price">￥{{item.goods_price}}</view>
                 </navigator>
