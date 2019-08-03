@@ -1,2 +1,37 @@
-<!--pages/cart/index.wxml-->
-<text>pages/cart/index.wxml</text>
+<!-- 获取用户地址 -->
+<!-- 点击按钮 触发事件 拿到用户信息进行渲染 -->
+<view class="getUserInfo">
+    <view class="getinfo_btn">
+        <button class="btn" bindtap="handleUserInfo">+ 添加收货信息</button>
+    </view>
+</view>
+<!-- 购物车部分 -->
+<view class="cart">
+    <view class="cart_title">购物车</view>
+    <view class="cart_content">
+        <view class="cart_content_item">
+            <!-- 复选框 -->
+            <view class="cart_chk_wrap">
+                <checkbox-group bindchange="">
+                    <checkbox></checkbox>
+                </checkbox-group>
+            </view>
+            <!-- 图片 -->
+            <view class="cart_img_wrap">
+                <image src="" />
+            </view>
+            <!-- 右侧的商品信息 -->
+            <view class="cart_info_wrap">
+                <view class="goods_title"></view>
+                <view class="goods_num_info">
+                    <view class="goods_price"></view>
+                    <view class="goods_num">
+                        <text class="editNum">-</text>
+                        <text class="num">1</text>
+                        <text class="editNum">+</text>
+                    </view>
+                </view>
+            </view>
+        </view>
+    </view>
+</view>

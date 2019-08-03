@@ -1,1 +1,14 @@
-/* pages/cart/index.wxss */
+.getUserInfo {
+  border-bottom: 20px solid #eee;
+}
+.getUserInfo .getinfo_btn {
+  padding: 20rpx 100rpx;
+}
+.cart .cart_title {
+  color: var(--themeColor);
+  font-size: 40rpx;
+  font-weight: 600;
+  padding: 20rpx 30rpx;
+  margin: 0 6rpx;
+  border-bottom: 1rpx solid var(--themeColor);
+}
