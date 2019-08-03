@@ -41,7 +41,8 @@
         <view class="iconfont icon-gouwuche"></view>
         <view >购物车</view>
     </navigator> 
-    <view class="addCart">加入购物车</view>
+    <!-- 点击加入购物车 将商品信息储存到本地 以对象的形式 商品id为属性 对应商品信息为值 -->
+    <view class="addCart" bindtap="handleCart">加入购物车</view>
     <view class="buy">立即购买</view>
 </view>
 <!-- 底部功能栏 结束 -->
