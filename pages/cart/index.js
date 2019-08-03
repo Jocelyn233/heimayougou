@@ -2,7 +2,7 @@
 Page({
 
   data: {
-
+    addressInfo: {}
   },
   // 点击获取用户收货信息按钮
   // 有三种情况 
@@ -22,7 +22,8 @@ Page({
           wx.chooseAddress({
             success(res2) {
               // console.log(res2)
-              // 拿到数据后存到本地
+              // 拿到数据后存到本地 all 先将地址拼接好再存入
+              res2.all = res2.provinceName + res2.cityName + res2.countyName + res2.detailInfo
               wx.setStorageSync('address', res2)
             }
           })
@@ -36,6 +37,7 @@ Page({
                 success(res3) {
                   // console.log(res3)
                   // 拿到数据后存到本地
+                  res3.all = res3.provinceName + res3.cityName + res3.countyName + res3.detailInfo
                   wx.setStorageSync('address', res3)
                 }
               })
@@ -45,5 +47,12 @@ Page({
       }
     })
 
+  },
+  onShow() {
+    // 在页面显示的时候 就把本地存的收货信息赋值给addressInfo
+    const addressInfo = wx.getStorageSync("address") || {}
+    this.setData({
+      addressInfo
+    })
   }
 })

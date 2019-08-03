@@ -5,13 +5,31 @@
     .btn {
     }
   }
+  .address_info {
+    display: flex;
+    padding: 40rpx 5rpx 40rpx 8rpx ;
+    .address {
+        font-size: 29rpx;
+      .address_name {
+          padding-bottom: 10rpx;
+      }
+
+      .address_all {
+      }
+    }
+    .phone {
+      // 左边剩余部分就给号码
+      flex: 1;
+      text-align: right;
+    }
+  }
 }
 .cart {
   .cart_title {
     color: var(--themeColor);
     font-size: 40rpx;
     font-weight: 600;
-    padding: 20rpx 30rpx; 
+    padding: 20rpx 30rpx;
     margin: 0 6rpx;
     border-bottom: 1rpx solid var(--themeColor);
   }

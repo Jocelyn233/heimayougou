@@ -4,6 +4,20 @@
 .getUserInfo .getinfo_btn {
   padding: 20rpx 100rpx;
 }
+.getUserInfo .address_info {
+  display: flex;
+  padding: 40rpx 5rpx 40rpx 8rpx ;
+}
+.getUserInfo .address_info .address {
+  font-size: 29rpx;
+}
+.getUserInfo .address_info .address .address_name {
+  padding-bottom: 10rpx;
+}
+.getUserInfo .address_info .phone {
+  flex: 1;
+  text-align: right;
+}
 .cart .cart_title {
   color: var(--themeColor);
   font-size: 40rpx;
