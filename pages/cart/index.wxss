@@ -6,7 +6,7 @@
 }
 .getUserInfo .address_info {
   display: flex;
-  padding: 40rpx 5rpx 40rpx 8rpx ;
+  padding: 40rpx 5rpx 40rpx 8rpx;
 }
 .getUserInfo .address_info .address {
   font-size: 29rpx;
@@ -18,6 +18,9 @@
   flex: 1;
   text-align: right;
 }
+.cart {
+  margin-bottom: 100rpx;
+}
 .cart .cart_title {
   color: var(--themeColor);
   font-size: 40rpx;
@@ -25,4 +28,100 @@
   padding: 20rpx 30rpx;
   margin: 0 6rpx;
   border-bottom: 1rpx solid var(--themeColor);
+}
+.cart .cart_content .cart_content_item {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 25rpx 12rpx;
+  border-bottom: 1rpx solid #eee;
+}
+.cart .cart_content .cart_content_item .cart_chk_wrap {
+  flex: 1;
+}
+.cart .cart_content .cart_content_item .cart_chk_wrap checkbox-group {
+  width: 80%;
+}
+.cart .cart_content .cart_content_item .cart_img_wrap {
+  flex: 2;
+}
+.cart .cart_content .cart_content_item .cart_img_wrap image {
+  width: 80%;
+}
+.cart .cart_content .cart_content_item .cart_info_wrap {
+  flex: 4;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+}
+.cart .cart_content .cart_content_item .cart_info_wrap .goods_title {
+  display: -webkit-box;
+  overflow: hidden;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+}
+.cart .cart_content .cart_content_item .cart_info_wrap .goods_num_info {
+  display: flex;
+  justify-content: space-between;
+  padding-top: 30rpx;
+}
+.cart .cart_content .cart_content_item .cart_info_wrap .goods_num_info .goods_price {
+  color: var(--themeColor);
+  font-size: 34rpx;
+  font-weight: 500;
+}
+.cart .cart_content .cart_content_item .cart_info_wrap .goods_num_info .goods_num {
+  display: flex;
+  text-align: center;
+}
+.cart .cart_content .cart_content_item .cart_info_wrap .goods_num_info .goods_num .editNum {
+  width: 50rpx;
+  height: 50rpx;
+  border: 1rpx solid #eee;
+}
+.cart .cart_content .cart_content_item .cart_info_wrap .goods_num_info .goods_num .num {
+  padding: 0 20rpx;
+}
+.foot {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 90rpx;
+  background-color: #fff;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  border-top: 1rpx solid #eee;
+  width: 100%;
+}
+.foot .foot_allChk_wrap {
+  flex: 2;
+  padding-left: 20rpx;
+  color: #000;
+  font-size: 34rpx;
+}
+.foot .addPrice {
+  flex: 3;
+  text-align: right;
+  padding-right: 20rpx;
+  padding-bottom: 10rpx;
+}
+.foot .addPrice .add {
+  color: #000;
+  font-size: 37rpx;
+}
+.foot .addPrice .add .add_num {
+  color: #ff0000;
+  font-weight: 500;
+}
+.foot .account {
+  flex: 2;
+  color: #fff;
+  background-color: #ff0000;
+  width: 100%;
+  height: 100%;
+  font-size: 36rpx;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }

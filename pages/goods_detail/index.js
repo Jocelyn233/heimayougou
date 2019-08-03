@@ -57,6 +57,7 @@ Page({
       cart[goods_id]=this.goodsAllInfo
       // 给 cart[goods_id] 这个对象加属性 num
       cart[goods_id].num=1
+      cart[goods_id].checked=true  // 该项是否选中
       // cart[num]=1
       // wx.setStorageSync("cart", cart)
     } else {

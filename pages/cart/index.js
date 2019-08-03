@@ -2,7 +2,10 @@
 Page({
 
   data: {
-    addressInfo: {}
+    // 收货信息
+    addressInfo: {},
+    // 购物车数据 在onShow的时候获取赋值
+    cart:{}
   },
   // 点击获取用户收货信息按钮
   // 有三种情况 
@@ -51,8 +54,10 @@ Page({
   onShow() {
     // 在页面显示的时候 就把本地存的收货信息赋值给addressInfo
     const addressInfo = wx.getStorageSync("address") || {}
+    const cart = wx.getStorageSync("cart") || {}
     this.setData({
-      addressInfo
+      addressInfo,
+      cart
     })
   }
 })
