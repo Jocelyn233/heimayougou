@@ -1,9 +1,6 @@
 <!-- 点击按钮 触发事件 拿到用户信息进行渲染 -->
 <view class="getUserInfo">
-    <view class="getinfo_btn" wx:if="{{!addressInfo.userName}}">
-        <button class="btn" bindtap="handleUserInfo">+ 添加收货信息</button>
-    </view>
-    <view class="address_info" wx:else>
+    <view class="address_info">
         <view class="address">
             <view class="address_name">收货人：{{addressInfo.userName}}</view>
             <view class="address_all">地址：{{addressInfo.all}}</view>
