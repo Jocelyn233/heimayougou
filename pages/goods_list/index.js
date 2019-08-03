@@ -30,7 +30,6 @@ Page({
     this.getGoodsList()
   },
   getGoodsList() {
-    // console.log(this.goodsListInfo);
     request({
       url: '/goods/search',
       data: this.goodsListInfo
