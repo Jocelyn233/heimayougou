@@ -19,7 +19,7 @@
         <view class="cart_content_item" wx:for="{{cart}}" wx:for-index="key" wx:for-item="value" wx:key="value">
             <!-- 复选框 -->
             <view class="cart_chk_wrap">
-                <checkbox-group bindchange="">
+                <checkbox-group bindchange="handleChecked" data-id="{{value.goods_id}}">
                     <checkbox checked="{{value.checked}}"></checkbox>
                 </checkbox-group>
             </view>
@@ -33,9 +33,9 @@
                 <view class="goods_num_info">
                     <view class="goods_price">¥ {{value.goods_price}}</view>
                     <view class="goods_num">
-                        <text class="editNum">-</text>
+                        <text class="editNum" bindtap="handleNum" data-operation="{{-1}}" data-id="{{value.goods_id}}">-</text>
                         <text class="num">{{value.num}}</text>
-                        <text class="editNum">+</text>
+                        <text class="editNum" bindtap="handleNum" data-operation="{{1}}" data-id="{{value.goods_id}}">+</text>
                     </view>
                 </view>
             </view>
@@ -46,15 +46,15 @@
 <view class="foot">
     <!-- 复选框 -->
     <view class="foot_allChk_wrap">
-        <checkbox-group bindchange="">
-            <checkbox checked="">全选</checkbox>
+        <checkbox-group bindchange="handleAllChecked">
+            <checkbox checked="{{isAllChecked}}">全选</checkbox>
         </checkbox-group>
     </view>
     <!-- 合计总价格 -->
     <view class="addPrice">
-        <view class="add">合计：<text class="add_num">¥ 999</text></view>
+        <view class="add">合计：<text class="add_num">¥ {{totalPrice}}</text></view>
         <view class="freight">包含运费</view>
     </view>
     <!-- 结算 -->
-    <view class="account">结算(1)</view>
+    <view class="account" bindtap="handleToPay">结算({{totalNum}})</view>
 </view>

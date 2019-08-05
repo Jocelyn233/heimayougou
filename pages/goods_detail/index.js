@@ -18,7 +18,6 @@ Page({
       .then(res => {
         // 将完整的商品信息 存在全局变量 goodsAllInfo 中
         this.goodsAllInfo = res
-        console.log(this.goodsAllInfo);
         // 把页面中需要用到的4项数据传到data中
         this.setData({
           goodsInfo: {
@@ -51,6 +50,7 @@ Page({
     // 点击 加入购物车 的时候  先判断一下 此时缓存中是否已经有该数据 没有 num=1 有 num++
     //  若本地中没有 cart 令它的值空
     let cart = wx.getStorageSync("cart") || {}
+    console.log(cart);
     const goods_id = this.goodsAllInfo.goods_id
     if (!cart[goods_id]) {
       // 将cart存到本地 给cart这个对象加属性
@@ -69,6 +69,7 @@ Page({
     }
     // 无论本地存储有没有都要执行的代码 更新本地存储的信息 给出提示
     wx.setStorageSync("cart", cart)
+
     wx.showToast({
       title: '添加成功',
       icon: 'none',

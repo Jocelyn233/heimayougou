@@ -4,7 +4,8 @@ Page({
     // 收货信息
     addressInfo: {},
     // 购物车数据 在onShow的时候获取赋值
-    cart:{}
+    cart:{},
+    totalPrice:0
   },
   // 点击获取用户收货信息按钮
   // 有三种情况 
@@ -58,5 +59,30 @@ Page({
       addressInfo,
       cart
     })
+    this.setCart(cart)
+  },
+  // 封装一个计算购物车总数和总价格的函数 同时把修改后的cart存入本地
+  setCart(cart) {  // 传入修改后的cart
+    // 1.先把cart从对象转为数组
+    let cartArr = Object.values(cart)
+    // 2.全选按钮的值由cartArr数组中的每一项是否选中决定 全部选中 值才为true
+    let isAllChecked = cartArr.every(v => v.checked)
+    // 3.遍历数组 将选中状态的商品 单价*数量 再进行相加 得到总价格
+    // 3.1 先让总价格 总数量的初始值为0 再进行相加
+    let totalPrice = 0
+    let totalNum = 0
+    // 4.进行数组的遍历
+    cartArr.forEach(v => {
+      if (v.checked) { // v.checked 当该商品状态为选中时 才进行计算
+        totalPrice += v.goods_price * v.num
+        totalNum += v.num
+      }
+      // 5.改变data中的数据 即渲染在页面的数据
+      this.setData({
+        isAllChecked, totalPrice, totalNum, cart
+      })
+      // 6.同时将修改后的cart重新存入本地
+      wx.setStorageSync('cart', cart)
+    });
   }
 })

@@ -36,7 +36,7 @@
 <view class="foot">
     <!-- 合计总价格 -->
     <view class="addPrice">
-        <view class="add">合计：<text class="add_num">¥ 999</text></view>
+        <view class="add">合计：<text class="add_num">¥ {{totalPrice}}</text></view>
         <view class="freight">包含运费</view>
     </view>
     <!-- 结算 -->
