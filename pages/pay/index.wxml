@@ -41,5 +41,5 @@
         <view class="freight">包含运费</view>
     </view>
     <!-- 结算 -->
-    <view class="account">支付</view>
+    <view class="account" bindtap="handleToPay">支付</view>
 </view>

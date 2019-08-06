@@ -4,8 +4,8 @@ Page({
     // 收货信息
     addressInfo: {},
     // 购物车数据 在onShow的时候获取赋值
-    cart:{},
-    totalPrice:0
+    cart: {},
+    totalPrice: 0
   },
   // 点击获取用户收货信息按钮
   // 有三种情况 
@@ -84,5 +84,19 @@ Page({
       // 6.同时将修改后的cart重新存入本地
       wx.setStorageSync('cart', cart)
     });
+  },
+  // 点击结算
+  handleToPay() {
+    // 跳转到授权页面 需要判断一下 如果有token值就不需要跳了 没有token值再跳转到授权页面去取
+    const token = wx.getStorageSync("token");
+    console.log(token);
+    if (!token) {  // 若不存在token token为空字符串
+      wx.navigateTo({
+        url: '/pages/auth/index',
+      })
+    }else{
+      // 有token的情况 直接走流程 带着token值发请求
+      console.log("有token");
+    }
   }
 })
