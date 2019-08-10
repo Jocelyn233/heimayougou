@@ -4,6 +4,15 @@
 var num = 0
 
 export const request = (params) => {
+
+    // 在私有页面 统一将请求头带上token  路径带my 就是私有页面
+    let header = {...params.header}  // 先定义一个请求头
+    if (params.url.includes('/my/')) {
+        const token=wx.getStorageSync('token');
+        // 路径中包含'/my/' 就在请求头 加上token
+        header["Authorization"]=token
+    }
+
     // 没发一次请求 num++
     num++
     const baseUrl = "https://api.zbztb.cn/api/public/v1"
@@ -14,6 +23,7 @@ export const request = (params) => {
     return new Promise((reslove, reject) => {
         wx.request({
             ...params,
+            header,
             url: baseUrl + params.url,
             success: (result) => {
                 reslove(result.data.message)

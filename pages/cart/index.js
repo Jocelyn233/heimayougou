@@ -147,7 +147,6 @@ Page({
     let { addressInfo, cart } = this.data
     // 2.将对象转成数组
     let cartArr = Object.values(cart)
-    console.log(cartArr);
     // 3.用some遍历数组 看下有没有选中状态的商品 一个为true 返回值就为true
     const hasCheckedCart = cartArr.some(v => v.checked)
     // 4.从上到下 先判断有没有地址

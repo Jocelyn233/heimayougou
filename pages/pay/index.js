@@ -1,3 +1,5 @@
+import { request } from "../../request/index"
+
 Page({
 
   data: {
@@ -89,14 +91,102 @@ Page({
   handleToPay() {
     // 跳转到授权页面 需要判断一下 如果有token值就不需要跳了 没有token值再跳转到授权页面去取
     const token = wx.getStorageSync("token");
-    console.log(token);
     if (!token) {  // 若不存在token token为空字符串
       wx.navigateTo({
         url: '/pages/auth/index',
       })
-    }else{
+    } else {
       // 有token的情况 直接走流程 带着token值发请求
-      console.log("有token");
+      // 0. 设置请求头
+      // const header = { Authorization: token };
+      // 1.把cart转成数组
+      const cartArr = Object.values(this.data.cart)
+      // console.log(cartArr);
+      // 所需要的参数 goods 数组
+      let goods = []
+      // 遍历cartArr 取到需要的参数
+      cartArr.forEach(v => {
+        goods.push({
+          goods_id: v.goods_id,
+          goods_number: v.num,
+          goods_price: v.goods_price
+        })
+      })
+      // 收货地址
+      const consignee_addr = this.data.addressInfo.all
+      // 订单总价格
+      const order_price = this.data.totalPrice
+      // 2.发送请求 拿到订单编号
+      request({
+        url: "/my/orders/create",
+        method: "POST",
+        // header,
+        data: {
+          consignee_addr,
+          order_price,
+          goods
+        }
+      })
+        .then(res => {
+          // 里面就包含order_number
+          const { order_number } = res
+          // 1.拿到order_number 就可以发起预支付
+          // 微信预支付 需要以下参数
+          request({
+            url: "/my/orders/req_unifiedorder",
+            method: "POST",
+            // header,
+            data: {
+              order_number
+            }
+          })
+            .then(res => {
+              const payData = res.pay
+              // 发起微信支付接口
+              wx.requestPayment({
+                ...payData,
+                success: (result) => {
+                  // console.log(result)  
+                  wx.showToast({
+                    title: '支付成功',
+                    icon: 'success',
+                    duration: 1000
+                  })  
+                  // 支付成功后 需要查询一下订单状态
+                  request({
+                    url:'/my/orders/chkOrder',
+                    method:"POST",
+                    // header,
+                    data:{
+                      order_number
+                    }
+                  })
+                  .then(res=>{
+                    // console.log(res); // 支付成功
+                    // 订单支付成功 就跳转到订单查询页面 查询刚刚支付的订单信息
+
+                  })
+                  .catch(err=>{
+                    console.log(err);
+                  })
+                },
+                fail: () => {
+                  wx.showToast({
+                    title: '支付失败',
+                    icon: 'success',
+                    duration: 1000
+                  })  
+                },
+              });
+
+            })
+            .catch(err => {
+              console.log(err);
+            })
+        })
+        .catch(err => {
+          console.log(err);
+        })
     }
   }
 })
